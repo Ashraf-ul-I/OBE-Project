@@ -1,0 +1,58 @@
+/* Your existing CSS styles */
+
+/* Add styles for the navigation layout */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--border-btn); /* Using the specified color */
+    padding: 10px 0;
+    /* background-color: #06d6a0; */
+}
+
+.navleft {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+.navmiddle {
+    background-color: transparent;
+    display: flex;
+    gap: 20px;
+
+}
+
+.navigation-item {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    color: var(--light); /* Using the specified light color */
+    padding: 10px;
+}
+
+.navright {
+    background-color: transparent;
+}
+
+/* Additional styles for better appearance */
+.container {
+    padding: 20px;
+}
+.About{
+    margin-top: 50px;
+    max-width: 80%x;
+    height: 500px;
+    /* background-image: url(/assets/img/img1.jpg);
+    background-size: cover; */
+}
+.About img{
+    height: 100%;
+    width: 100%;
+}
+
