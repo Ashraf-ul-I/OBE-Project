@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Display</title>
+</head>
+<body>
+    <div class="data-box">
+        <h2>Exam ID: <%= userBB.ExamID %></h2>
+        <h2>Selected Faculty Data</h2>
+        <table>
+            <tr>
+                <th>Faculty Name</th>
+                <th>Faculty ID</th>
+                <th>Course Code</th>
+                <th>Course Title</th>
+                <th>Semester</th>
+            </tr>
+            <% userBB.forEach(Faculty => { %>
+            <tr>
+                <td><%= Faculty.Fname %></td>
+                <td><%= Faculty.Fid %></td>
+                <td><%= Faculty.Ccode %></td>
+                <td><%= Faculty.Ctitle %></td>
+                <td><%= Faculty.Semester %></td>
+            </tr>
+            <% }); %>
+        </table>
+    </div>
+
+    <div class="data-box">
+        <h2>Student Data</h2>
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Student ID</th>
+                <th>Marks</th>
+                <th>CO 1</th>
+                <th>CO 2</th>
+                <th>CO 3</th>
+                <th>CO 4</th>
+                <th>CO 5</th>
+                <th>CO 6</th>
+                <th>CO 7</th>
+            </tr>
+            <% userBB.forEach(student => { %>
+                <tr>
+                    <td><%= student.studentName %></td>
+                    <td><%= student.studentIDvalue %></td>
+                    <td><%= student.Marks %></td>
+                    <td><%= student.co1 %></td>
+                    <td><%= student.co2 %></td>
+                    <td><%= student.co3 %></td>
+                    <td><%= student.co4 %></td>
+                    <td><%= student.co5 %></td>
+                    <td><%= student.co6 %></td>
+                    <td><%= student.co7 %></td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+</body>
+</html>

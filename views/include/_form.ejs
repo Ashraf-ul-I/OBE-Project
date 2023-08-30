@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="techerdata">
+    
+         
+          <form action="">
+             <fieldset>
+              <legend>FACULTY</legend>
+              <label for="name"> Name</label><br>
+              <input type="text" name="name"><br>
+              <label for="name">Course Code & Section</label><br>
+              <input type="text" name="name"><br>
+              <label for="name"> Course Title</label><br>
+              <input type="text" name="name"><br>
+              <label for="name"> Semester</label><br>
+              <input type="text" name="name"><br>
+             </fieldset>
+          </form>
+      
+  </div>
+  <!-- Student Marks entry section  -->
+  <!-- <div class="marksEntry">
+          <form action=""> 
+              <fieldset>
+                  <legend>Marks Entry</legend>
+                  <label for="name">Exam</label>
+              <select name="semester" id="semester">
+                  <option value="Mid-1">Mid-1</option>
+                  <option value="Mid-2">Mid-2</option>
+                  <option value="Final">Final</option>
+              </select>
+              <table>
+               
+                  <tr>
+                      <th>Student Name</th>
+                      <th>Student ID</th>
+                      <th>Marks</th>
+                  </tr>
+                  <tbody id="container">
+                  <tr>
+                    <td><input type="text" class="coInput" name="studentName"></td>
+                    <td><input type="text" class="coInput" name="studentID"></td>
+                    <td><input type="text" class="coInput" name="co-1"></td>
+                    <td><button type="button" id="addButton" onclick="create_tr('container')">Add Row</button> <button type="button" id="delbutton" onclick="remove_tr(this)">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              </fieldset>
+          </form>
+  </div> -->
+
+  <!-- <script>
+    function create_tr(container){
+         let table_body=document.getElementById(container);
+         let first_tr=table_body.firstElementChild;
+         let tr_clone=first_tr.cloneNode(true);
+         clean_first_tr(tr_clone);
+         
+         let newRow = document.createElement("tr");
+         newRow.innerHTML = tr_clone.innerHTML;  // Copy the content of the cloned row
+         table_body.appendChild(newRow);
+    }
+ 
+    function clean_first_tr(firstTr){
+         let children=firstTr.children;
+         children=Array.isArray(children)  ? children:Object.values(children);
+         children.forEach(x=>{
+             if(x!==firstTr.lastElementChild){
+                 x.firstElementChild.value=' ';
+             }
+         });
+    }
+    function remove_tr(This){
+     if(This.closest('tbody').childElementCount == 1){
+         alert("You Don't have Permission to delete the first row");
+     }else{
+         This.closest('tr').remove();
+     }
+    }
+ </script> -->

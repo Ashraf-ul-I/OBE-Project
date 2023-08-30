@@ -1,0 +1,14 @@
+<!-- search.ejs -->
+
+<%- include('include/_header')%>
+
+<div class="search-container">
+    <h2>Search by Exam ID</h2>
+    <form action="/search" method="GET">
+        <label for="examId">Enter Exam ID:</label>
+        <input type="text" id="examId" name="ExamID">
+        <a href="/api/users"><button type="submit" name="search">Search</button></a>
+    </form>
+</div>
+
+<%- include('include/_footer')%>
