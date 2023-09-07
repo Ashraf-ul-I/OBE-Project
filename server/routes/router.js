@@ -1,38 +1,42 @@
 const express = require('express');
 const services = require('../services/render');
 const controller=require('../controller/controller')
-
+const isAuthenticated=require('../middleware/urlauth')
 const router = express.Router();
 
-router.get('/', services.homeRoutes);
-router.get('/about', services.homeRoutes);
-router.get('/marks-entry',services.marksEntry);
-router.get('/show-data',services.dataShow);
-router.get('/search',services.Search);
+
+router.get('/home',isAuthenticated, services.homeRoutes);
+router.get('/about',isAuthenticated, services.homeRoutes);
+router.get('/marks-entry',isAuthenticated,services.marksEntry);
+router.get('/show-data',isAuthenticated,services.dataShow);
+router.get('/search',isAuthenticated,services.Search);
+router.get('/define-co',isAuthenticated,services.defineCo);
+router.get('/coRatios', isAuthenticated,services.coRatios);
+router.get('/findPO',isAuthenticated,services.poValues);
+//Middleware
+
+
+//////Login REgister 
+router.get('/',services.login);
+router.get('/register',services.register);
+//login register API with session and cookies
+router.post('/api/users/signup',controller.signup);
+router.post('/api/users/login',controller.login);
+router.get('/api/users/logout',controller.logout);
 
 //API
- router.post('/api/users',controller.create);
- 
-// router.post('/api/users',controller.createStudent);
-// router.post('/api/users',controller.createExam); 
-router.get('/api/users', controller.find);
-router.get('/api/users', controller.find1);
-// router.get('/search', async (req, res) => {
-//     const examId = req.query.ExamID; // Assuming ExamID is from the query parameter
+ router.post('/api/users/create',controller.createStudent);
+ router.get('/api/users/find', controller.find);
+//  router.get('/api/users/find1', controller.find1);
+ router.post('/api/users/Codefine', controller.codefine);
+ router.get('/api/users/findRatios',controller.findRatios);
+ router.post('/api/users/coRatio',controller.coRatio);
+ router.post('/api/users/calculatePOs',controller.calculatePO);
 
-//     try {
-//         const data = await YourModel.findOne({ ExamID: examId }); // Replace with the appropriate query
+///Search and show Api
+router.get('/api/users/findPO', controller.findPovalues);
 
-//         if (data) {
-//             res.render('datashow.ejs', { data }); // Rendering the datashow.ejs template with the retrieved data
-//         } else {
-//             res.send('No data found for the provided ExamID');
-//         }
-//     } catch (error) {
-//         console.error(error);
-//         res.send('An error occurred');
-//     }
-// });
+router.get('/api/users/search', controller.searchShow);
 
 router.put('/api/users/:id',controller.update);
 

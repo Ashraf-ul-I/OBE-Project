@@ -1,298 +1,163 @@
 
 const UserDB = require('../model/model');
-
-
-// exports.create = async (req, res) => {
-//     try {
-//         if (!req.body) {
-//             res.status(400).send({ message: 'Content can not be empty' });
-//             return;
-//         }
-
-//         const {
-//             Fname,
-//             Fid,
-//             Ccode,
-//             Ctitle,
-//             Semester,
-//             ExamID,
-//             studentID
-//         } = req.body;
-
-//         // Convert all values in the studentID array to numbers
-//         const studentIDArray = studentID.map(student => {
-//             const studentData = {};
-//             for (const field in student) {
-//                 studentData[field] = Number(student[field]);
-//             }
-//             return studentData;
-//         });
-//         console.log(req.body.studentID);
-
-//         // Create a new user object
-//         const newUser = new UserDB({
-//             Fname,
-//             Fid,
-//             Ccode,
-//             Ctitle,
-//             Semester,
-//             ExamID,
-//             studentID: studentIDArray
-//         });
-
-//         // Save user in the database
-//         const savedUser = await newUser.save();
-//         console.log(req.body.studentID);
-
-//         res.status(201).json({ message: 'Exam entry saved successfully', data: savedUser });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send({ message: 'An error occurred while saving the exam entry' });
-//     }
-// };
+const mongoose = require('mongoose');
+const loginregDB = require('../model/loginReg');
+const ComarkDb=require('../model/setComarks')
+const { Model } = require('mongoose');
+const session = require('express-session');
+const CoRatiosModel=require('../model/coratio')
+const POModel=require('../model/podata')
 
 /**
  * 
- * @param {} 
- * @param {*} 
- * @returns 
- * @description for the single data input 
+ * @param {Most important Api for create user} req 
+ * @param {*} res 
+ */
+exports.createStudent = async (req, res) => {
+    try {
+        const {
+            Ccode,
+            Ctitle,
+            Semester,
+            ExamID,
+            studentName,
+            studentIDvalue,
+            Marks,
+            co1,
+            co2,
+            co3,
+            co4,
+            co5,
+            co6,
+            co7,
+            Fid
+        } = req.body;
+
+        // Create a new student instance
+        const student = new UserDB({
+            Ccode,
+            Ctitle,
+            Semester,
+            ExamID,
+            studentName,
+            studentIDvalue,
+            Marks,
+            co1,
+            co2,
+            co3,
+            co4,
+            co5,
+            co6,
+            co7,
+            Fid,
+        });
+
+     
+        await student.save();  
+        res.redirect('/marks-entry');
+        
+    } catch (err) {
+        console.error(err);
+        res.redirect('/marks-entry?alert=error&message=Error occurred while creating student');
+    }
+};
+
+/**
  * 
+ * @abstract {* Faculty will Define the CO for the Subject By This COdeinf api}  
+ * @param {*} 
  */
 
+exports.codefine=  (req,res)=>{
+    try{
+           const{
+             co1,
+             co2,
+             co3,
+             co4,
+             co5,
+             co6,
+             co7,
+            //  userId,
+           }=req.body;
 
-exports.create = (req, res) => {
-    const marksEntryData = {
-        faculty: {
-            Fname:   String(req.body.Fname),
-            Fid:     String(req.body.Fid),
-            Ccode:   String(req.body.Ccode),
-            Ctitle:  String(req.body.Ctitle),
-            Semester: String(req.body.Semester),
-        },
-        ExamID: String(req.body.ExamID),
-        students: [
-           {
-            studentName: String(req.body.studentName),
-            studentIDvalue: String(req.body.studentIDvalue),
-            Marks: String(req.body.Marks),
-            co1: String(req.body.co1),
-            co2: String(req.body.co2),
-            co3: String(req.body.co3),
-            co4: String(req.body.co4),
-            co5: String(req.body.co5),
-            co6: String(req.body.co6),
-            co7: String(req.body.co7),
-           }
-        ],
-    };
+           const defineCO= new ComarkDb({
+            co1,
+            co2,
+            co3,
+            co4,
+            co5,
+            co6,
+            co7,
+            //  userId,
+           })
 
-    if (req.body.students && req.body.students.length > 0) {
-        const students = Array.from(req.body.students);
-
-        // Initialize the students object within marksEntryData
-        marksEntryData.students = {};
-
-        for (const student of students) {
-            const studentData = {
-                studentName: String(student.studentName),
-                studentIDvalue: String(student.studentIDvalue),
-                Marks: String(student.Marks),
-                co1: String(student.co1),
-                co2: String(student.co2),
-                co3: String(student.co3),
-                co4: String(student.co4),
-                co5: String(student.co5),
-                co6: String(student.co6),
-                co7: String(student.co7),
-            };
-            console.log(studentData);
-            marksEntryData.students[student.studentIDvalue] = studentData;
-        }
+           defineCO.save();
+           res.redirect('/define-co');
+    }catch(err){
+        console.error(err);
+        res.redirect('/marks-entry?alert=error&message=Error occurred while creating student');
     }
-    console.log(req.body.students);
-    console.log(marksEntryData);
-
-    const newMarksEntry = new UserDB(marksEntryData);
-
-    newMarksEntry
-        .save()
-        .then(data => {
-            res.redirect('/marks-entry');
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating a create operation"
-            });
-        });
-};
-
-
-
-
-
-// exports.create = (req, res) => {
-//     const marksEntryData = {
-//         faculty: {
-//             Fname: String(req.body.Fname),
-//             Fid: String(req.body.Fid),
-//             Ccode: String(req.body.Ccode),
-//             Ctitle: String(req.body.Ctitle),
-//             Semester: String(req.body.Semester),
-//         },
-//         ExamID: String(req.body.ExamID),
-//         students: [],
-//     };
-
-//     if (req.body.students && req.body.students.length > 0) {
-//         const studentsData = req.body.students[0];
-//         const studentNames = studentsData.studentName.split(',');
-//         const studentIDs = studentsData.studentIDvalue.split(',');
-//         const Marks = studentsData.Marks.split(',');
-//         const co1 = studentsData.co1.split(',');
-//         const co2 = studentsData.co2.split(',');
-//         const co3 = studentsData.co3.split(',');
-//         const co4 = studentsData.co4.split(',');
-//         const co5 = studentsData.co5.split(',');
-//         const co6 = studentsData.co6.split(',');
-//         const co7 = studentsData.co7.split(',');
-
-//         for (let i = 0; i < studentNames.length; i++) {
-//             const studentData = {
-//                 studentName: String(studentNames[i]),
-               
-//                 studentIDvalue: String(studentIDs[i]),
-//                 Marks: String(Marks[i]),
-//                 co1: String(co1[i]),
-//                 co2: String(co2[i]),
-//                 co3: String(co3[i]),
-//                 co4: String(co4[i]),
-//                 co5: String(co5[i]),
-//                 co6: String(co6[i]),
-//                 co7: String(co7[i]),
-//             };
-//             console.log(studentData);
-//             marksEntryData.students.push(studentData);
-//         }
-//     }
-
-//     console.log(marksEntryData);
-
-//     const newMarksEntry = new UserDB(marksEntryData);
-
-//     newMarksEntry
-//         .save()
-//         .then(data => {
-//             res.redirect('/marks-entry');
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while creating a create operation"
-//             });
-//         });
-// };
-
-  
-
-
-
-
-
-
-
-
-
-//  */
-// exports.create = (req, res) => {
-//     if (!req.body) {
-//         res.status(400).send({ message: 'Content can not be empty' });
-//         return;
-//     }
-
-//     const { Fname, Fid, Ccode, Ctitle, Semester, ExamID, students } = req.body;
-
-//     // Create an array of student objects
-//     const user = new UserDB({
-//         faculty: {
-//             name: Fname,
-//             facultyId: Fid,
-//             courseCode: Ccode,
-//             courseTitle: Ctitle,
-//             semester: Semester,
-//         },
-//         examId: ExamID,
-//         students: students.map(student => ({
-//             studentName: student.studentName,
-//             studentID: student.studentIDvalue,
-//             marks: student.Marks,
-//             co1: student.co1,
-//             co2: student.co2,
-//             co3: student.co3,
-//             co4: student.co4,
-//             co5: student.co5,
-//             co6: student.co6,
-//             co7: student.co7,
-//         })),
-//     });
-
-//     // Save user in the database
-//     user
-//         .save()
-//         .then(data => {
-//             res.redirect('/marks-entry');
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while creating a create operation"
-//             });
-//         });
-// };
-
-////###############################################FIND OL ONED WHICH RUN GET ALL DATA ########
-exports.find=(req,res)=>{
-  if(req.query.ExamID){
-     const id=req.query.ExamID;
-     UserDB.findById(id)
-     .then(data=>{
-       if(!data){
-        res.status(500).send({message: "Not found User id"+id})
-       }else{
-        res.send(data);
-       }
-    })
-    .catch(err=>{
-        res.status(500).send({message:err.message || "Error Occured while retriving user with id"+id})
-    })
-  }else{
-    UserDB.find()
-    .then(user=>{
-        res.send(user);
-    })
-    .catch(err=>{
-        res.status(500).send({message:err.message || "Error Occured while retriving user information"})
-    })
-  }
 }
+/**
+ * 
+ * @param {This is find api it will search for the data which are stored in the databasae} req 
+ * @param {*} res 
+ */
 
-exports.find1=(re1,res)=>{
-    if(req.query.ExamID){
-        const id=req.query.ExamID;
-        UserDB.findById(id)
-        .then(data=>{
-          if(!data){
-            res.status(500).send({message: "Not found User id"+id})
-          }else{
-            res.render('dataShow',{
-              userBB:data,
-              ExamID:id
+exports.find = (req, res) => {
+    const { Fid } = req.query;
+
+    if (Fid) {
+        UserDB.findById(Fid)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: "User not found with id: " + Fid });
+                } else {
+                    res.send(data);
+                }
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error occurred while retrieving user with id: " + Fid });
             });
-          }
-        })
-        .catch(err=>{
-            res.status(500).send({message:err.message || "Error Occured while retriving user with id"+id})
-          })
-      }
+    } else {
+        UserDB.find()
+            .then(users => {
+                res.send(users);
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error occurred while retrieving user information" });
+            });
+    }
 };
+
+
+
+
+
+
+
+// ////////////////////////
+
+// exports.find1=(re1,res)=>{
+//     if(req.query.ExamID){
+//         const id=req.query.ExamID;
+//         UserDB.findById(id)
+//         .then(data=>{
+//           if(!data){
+//             res.status(500).send({message: "Not found User id"+id})
+//           }else{
+//             res.render('dataShow',{
+//               userBB:data,
+//               ExamID:id
+//             });
+//           }
+//         })
+//         .catch(err=>{
+//             res.status(500).send({message:err.message || "Error Occured while retriving user with id"+id})
+//           })
+//       }
+// };
 
 
 
@@ -337,3 +202,286 @@ exports.delete=(req,res)=>{
         res.status(500).send({message:"Could not Delete User with id="+id});
     })
 }
+
+
+exports.setupSession = (app) => {
+    app.use(session({
+        secret: 'My-secret-key', 
+        resave: false,
+        saveUninitialized: true,
+    }));
+};
+
+// Login route
+exports.login = async (req, res) => {
+    try {
+        const check = await loginregDB.findOne({ Fid: req.body.Fid });
+        if (check && check.password === req.body.password) {
+            req.session.userId = check.Fid;
+            res.render('index');
+        } else {
+            res.send('<script>alert("Wrong details"); window.location.href = "/";</script>');
+        }
+    } catch (err) {
+        console.error(err);
+        res.send('<script>alert("An error occurred. You may not be a registered user."); window.location.href = "/register";</script>');
+    }
+};
+
+// Logout route
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error while logging out:', err);
+        }
+        res.redirect('/');
+    });
+};
+exports.signup = async (req, res) => {
+    const { Fid, Fname, password, confirmpassword } = req.body;
+
+    try {
+        const existingUser = await loginregDB.findOne({
+            Fid: Fid
+        });
+
+        if (existingUser) {
+            res.send('<script>alert("User already exists"); window.location.href = "/login";</script>');
+        } else {
+            const user = await loginregDB.create({
+                Fid: Fid,
+                Fname: Fname,
+                password: password,
+                confirmpassword: confirmpassword
+            });
+
+            const successMessage = `
+                <div style="border: 1px solid #ccc; padding: 10px;">
+                    User created successfully. <a href="/">OK</a>
+                </div>
+            `;
+            res.status(201).send(successMessage);
+        }
+    } catch (err) {
+        res.status(500).send(
+            `<script>alert("Something Wrong Please Carefully Fillup The Field"); window.location.href = "/register";</script>`
+        );
+    }
+};
+
+
+exports.searchShow=(req,res)=>{
+    const queryFid = req.query.Fid;
+     console.log(queryFid);
+    if(req.body.Fid === queryFid ){
+        UserDB.findById(Fid)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: "User not found with id: " + Fid });
+                } else {
+                    res.render('/show-data');
+                }
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error occurred while retrieving user with id: " + Fid });
+            });
+    }
+}
+
+
+
+
+
+exports.coRatio = async (req, res) => {
+    try {
+    
+      const codefine = await ComarkDb.findOne().lean();
+      const students = await UserDB.find().lean();
+  
+      const coRatios = [];
+  
+      for (const student of students) {
+        const coRatio = {};
+
+        for (let i = 1; i <= 7; i++) {
+          const coKey = `co${i}`;
+          coRatio[coKey] = Array.isArray(student[coKey]) ? student[coKey].map(val => parseFloat(val)) : null;
+        }
+  
+        for (let i = 1; i <= 7; i++) {
+          const coKey = `co${i}`;
+          if (codefine[coKey] !== 0 && coRatio[coKey]) {
+            coRatio[coKey] = coRatio[coKey].map(val => val / parseFloat(codefine[coKey]));
+          }
+        }
+  
+        // Add the CO ratios for the student to the 'coRatios' array
+        coRatios.push({
+          studentIDvalue: student.studentIDvalue,
+          ratios: coRatio,
+        });
+      }
+      for (const coRatioData of coRatios) {
+        await CoRatiosModel.create(coRatioData);
+      }
+  
+      res.send('CO ratios calculated and saved successfully for each student');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error calculating and saving CO ratios');
+    }
+  };
+  
+  
+
+
+exports.findRatios = (req, res) => {
+    const { studentIDvalue } = req.query;
+
+    if (studentIDvalue) {
+        CoRatiosModel.findById(studentIDvalue)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: "User not found with id: " + Fid });
+                } else {
+                    res.send(data);
+                }
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error occurred while retrieving user with id: " + Fid });
+            });
+    } else {
+        CoRatiosModel.find()
+            .then(users => {
+                res.send(users);
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error occurred while retrieving user information" });
+            });
+    }
+};
+
+
+/**
+ * 
+ * @abstract {* This api is calculate the value of the PO ratio } req 
+ * @param {*} res 
+ */
+
+exports.calculatePO = async (req, res) => {
+    try {
+    const coToPoMatrix = [
+    [1, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1],
+    ];
+    
+      const students = await CoRatiosModel.find().lean();
+      console.log(students);
+    
+      const poValues = [];
+    
+      for (const student of students) {
+        console.log(student);
+        const poValue = {
+          studentIDvalue: student.studentIDvalue,
+          po: [], 
+        };
+        console.log(poValue.studentIDvalue);
+        const coData = {};
+    
+        for (let i = 1; i <= 7; i++) {
+          const coKey = `co${i}`;
+          console.log("****************student.ratios has been printed **************");
+          console.log(student.ratios);
+          console.log("#################student.ratios[cokey]");
+          console.log(student.ratios[coKey]);
+    
+          if (student.ratios && student.ratios[coKey] && student.ratios[coKey].length > 0) {
+            coData[coKey] = student.ratios[coKey];
+          }
+        }
+
+        const numRows = coData.co1.length; 
+        const coRows = [];
+    
+        for (let i = 0; i < numRows; i++) {
+          const coRow = [];
+          for (const coKey in coData) {
+            coRow.push(coData[coKey][i]);
+          }
+          coRows.push(coRow);
+        }
+    
+        // console.log("coRows:");
+        // console.log(coRows);
+        // console.log("coToPoMatrix:");
+        // console.log(coToPoMatrix);
+        const coMatrix = [].concat(...coRows);
+    
+ const po = coMatrix.map((row) => {
+    if (Array.isArray(row)) {
+      return row.map((value, j) => {
+        return [value * coToPoMatrix[j]];
+      });
+    } else {
+      
+      return row; 
+    }
+  });
+  
+  poValue.po = po;
+  poValues.push(poValue);
+
+ for (const poValue of poValues) {
+    console.log("Student ID:", poValue.studentIDvalue);
+    console.log("PO values:");
+    for (const poArray of poValue.po) {
+      console.log(poArray);
+    }
+    console.log("--------------");
+  }
+ await POModel.create(poValues);
+  
+      }}catch (error) {
+        console.error(error);
+        res.status(500).send('Error calculating and saving PO values');
+      }
+    }
+ 
+
+/**
+ * 
+ * @param {It will retrieve the data of the PO ratios and then show the value to the user} req 
+ * @param {*} res 
+ */
+    
+exports.findPovalues = (req, res) => {
+    const { studentIDvalue } = req.query;
+
+    if (studentIDvalue) {
+        POModel.findById(studentIDvalue)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: "User not found with id: " + Fid });
+                } else {
+                    res.send(data);
+                }
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error occurred while retrieving user with id: " + Fid });
+            });
+    } else {
+        POModel.find()
+            .then(users => {
+                res.send(users);
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Error occurred while retrieving user information" });
+            });
+    }
+};
