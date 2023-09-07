@@ -1,0 +1,58 @@
+body {
+    background-color: #000505;
+    font-family: sans-serif;
+    background-image: url("/img/aboutBAck.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .login-container {
+    display: relative;
+    width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    background-color: white ;
+    margin-top: 150px;
+  }
+  
+  .login-form {
+    margin-top: 20px;
+  }
+  
+  .login-form input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    margin-left: 10%;
+  }
+  
+  .login-form button {
+  background-color: #d141a1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    margin-left: 10%;
+  }
+  
+  .login-form button:hover {
+    background-color: #000505;
+  }
+  p{
+      margin-left: 42%;
+  }
+  .signup-Now{
+      text-decoration: none;
+      background-color: #d141a1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      width: 80%;
+      
+  
+  
+  }

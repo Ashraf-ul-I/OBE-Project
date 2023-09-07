@@ -1,0 +1,78 @@
+body{
+    background-image: url("/img/aboutBAck.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 150px;
+ 
+}
+
+.card {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 500px;
+    height: 450px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+a{
+    
+    text-decoration: none;
+    color: white;
+}
+button {
+
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d141a1;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.logs_button {
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d141a1;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10%;
+    margin-top: 20px;
+   
+}
+
+.logs_button a {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
