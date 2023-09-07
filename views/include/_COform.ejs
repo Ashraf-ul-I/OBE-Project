@@ -1,329 +1,162 @@
-
-<div class="CO">
-    <form action="/api/users" method="POST" id="marks_entry_in"> 
-        <div class="container">
-            <div class="techerdata">
-              
-                   
-                   
-                       <fieldset>
-                        <legend>FACULTY</legend>
-                        <label for="name"> Name</label><br>
-                        <input type="text" name="Fname"><br>
-                        <label for="name"> Faculty Id</label><br>
-                        <input type="text" name="Fid"><br>
-                        <label for="name">Course Code & Section</label><br>
-                        <input type="text" name="Ccode"><br>
-                        <label for="name"> Course Title</label><br>
-                        <input type="text" name="Ctitle"><br>
-                        <label for="name"> Semester</label><br>
-                        <input type="text" name="Semester"><br>
-                       </fieldset>
-
-                
-            </div>
-
-        <fieldset>
-            <legend>CO </legend>
-            <label for="name">Exam</label>
-             <input type="text" name="ExamID">
-            <table>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Student ID</th>
-                    <th>Marks</th>
-                    <th>CO 1</th>
-                    <th>CO 2</th>
-                    <th>CO 3</th>
-                    <th>CO 4</th>
-                    <th>CO 5</th>
-                    <th>CO 6</th>
-                    <th>CO 7</th>
-                    <th>Add Row</th>
-                </tr>
-            
-       <tbody id="container">
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr><tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="text" class="coInput" name="studentName"></td>
-                        <td><input type="text" class="coInput" name="studentIDvalue"></td>
-                        <td><input type="text" class="coInput" name="Marks"></td>
-                        <td><input type="text" class="coInput" name="co1"></td>
-                        <td><input type="text" class="coInput" name="co2"></td>
-                        <td><input type="text" class="coInput" name="co3"></td>
-                        <td><input type="text" class="coInput" name="co4"></td>
-                        <td><input type="text" class="coInput" name="co5"></td>
-                        <td><input type="text" class="coInput" name="co6"></td>
-                        <td><input type="text" class="coInput" name="co7"></td>
-                        
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </fieldset>
-        <div class="CoSubmit"> <button class="submit-btn">Save</button></div>
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Student Data Form</title>
+</head>
+<body>
+    <h1>Student Data Form</h1>
+    <form action="/api/users/create" id="studentForm" method="POST">
+        <label for="tableCount">Number of Tables:</label>
+        <input type="number" id="tableCount" name="tableCount" min="1" value="1">
+        <button type="button" id="generateTables">Generate Tables</button>
+        <hr>
+        <div id="tableContainer"></div>
+        <br>
+        <button type="submit">Submit</button>
     </form>
-</div>
 
+    <script>
+        const studentForm = document.getElementById("studentForm");
+        const generateTablesBtn = document.getElementById("generateTables");
+        const tableContainer = document.getElementById("tableContainer");
 
+        generateTablesBtn.addEventListener("click", function () {
+            const tableCount = parseInt(document.getElementById("tableCount").value, 10);
 
+            // Clear existing tables
+            tableContainer.innerHTML = "";
 
-
-
-
-<!-- 
-
- <script>
-    <td><button type="button" id="addButton" onclick="create_tr('container')">Add Row</button> <button type="button" id="delbutton" onclick="remove_tr(this)">Delete</button></td>
-   function create_tr(container){
-        let table_body=document.getElementById(container);
-        let first_tr=table_body.firstElementChild;
-        let tr_clone=first_tr.cloneNode(true);
-        clean_first_tr(tr_clone);
-        
-        let newRow = document.createElement("tr");
-        newRow.innerHTML = tr_clone.innerHTML;  // Copy the content of the cloned row
-        table_body.appendChild(newRow);
-   }
-
-   function clean_first_tr(firstTr){
-        let children=firstTr.children;
-        children=Array.isArray(children)  ? children:Object.values(children);
-        children.forEach(x=>{
-            if(x!==firstTr.lastElementChild){
-                x.firstElementChild.value=' ';
+            for (let i = 0; i < tableCount; i++) {
+                const table = document.createElement("table");
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Student Details</th>
+                            <th>CO1</th>
+                            <th>CO2</th>
+                            <th>CO3</th>
+                            <th>CO4</th>
+                            <th>CO5</th>
+                            <th>CO6</th>
+                            <th>CO7</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" name="Ccode[${i}]" placeholder="Course Code">
+                                <input type="text" name="Ctitle[${i}]" placeholder="Course Title">
+                                <input type="text" name="Semester[${i}]" placeholder="Semester">
+                                <input type="text" name="ExamID[${i}]" placeholder="Exam ID">
+                                <input type="text" name="studentName[${i}]" placeholder="Student Name">
+                                <input type="text" name="studentIDvalue[${i}]" placeholder="Student ID">
+                                <input type="text" name="Marks[${i}]" placeholder="Marks">
+                            </td>
+                            <td><input type="number" name="co1[${i}]"></td>
+                            <td><input type="number" name="co2[${i}]"></td>
+                            <td><input type="number" name="co3[${i}]"></td>
+                            <td><input type="number" name="co4[${i}]"></td>
+                            <td><input type="number" name="co5[${i}]"></td>
+                            <td><input type="number" name="co6[${i}]"></td>
+                            <td><input type="number" name="co7[${i}]"></td>
+                        </tr>
+                    </tbody>
+                `;
+                tableContainer.appendChild(table);
             }
         });
-   }
-   function remove_tr(This){
-    if(This.closest('tbody').childElementCount == 1){
-        alert("You Don't have Permission to delete the first row");
-    }else{
-        This.closest('tr').remove();
-    }
-   }
-  
-</script>  
- -->
 
+        studentForm.addEventListener("submit", function (event) {
+            event.preventDefault();
 
-<!-- <script>
-    function submitForm() {
-        const students = [];
+            const formData = new FormData(this);
 
-        // Iterate through each row in the table
-        const rows = document.querySelectorAll('#container tr');
-        rows.forEach(row => {
-            const student = {
-                studentName: row.querySelector('[name="studentName"]').value,
-                studentIDvalue: row.querySelector('[name="studentIDvalue"]').value,
-                Marks: row.querySelector('[name="Marks"]').value,
-                co1: row.querySelector('[name="co1"]').value,
-                co2: row.querySelector('[name="co2"]').value,
-                co3: row.querySelector('[name="co3"]').value,
-                co4: row.querySelector('[name="co4"]').value,
-                co5: row.querySelector('[name="co5"]').value,
-                co6: row.querySelector('[name="co6"]').value,
-                co7: row.querySelector('[name="co7"]').value,
-            };
-            students.push(student);
+            // Now you can send the 'formData' to your server to save it to the database
+            // You can use AJAX or fetch to send a POST request to your server endpoint.
+
+            console.log(formData); // For demonstration purposes, print the data to the console.
         });
+    </script>
+</body>
+</html> -->
 
-        const formData = {
-            Fname: document.querySelector('[name="Fname"]').value,
-            Fid: document.querySelector('[name="Fid"]').value,
-            Ccode: document.querySelector('[name="Ccode"]').value,
-            Ctitle: document.querySelector('[name="Ctitle"]').value,
-            Semester: document.querySelector('[name="Semester"]').value,
-            ExamID: document.querySelector('[name="ExamID"]').value,
-            students: students,
-        };
 
-        console.log(formData); // Debugging line
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Data Form</title>
+</head>
+<body>
+    <h1>Student Data Form</h1>
+    <form action="/api/users/create" method="POST">
+        <table>
+            <tr>
+                <td>
+                    Fid:  <input type="text" name="Fid" placeholder="Faculty ID">
+                </td>
+            </tr>
+        </table>
+        <table>
+            
+            <thead>
+                <tr>
+                    <th>Student Details</th>
+                    <th>CO1</th>
+                    <th>CO2</th>
+                    <th>CO3</th>
+                    <th>CO4</th>
+                    <th>CO5</th>
+                    <th>CO6</th>
+                    <th>CO7</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Student 1 -->
+                <tr>
+                    <td>
+                        <input type="text" name="Ccode[0]" placeholder="Course Code">
+                        <input type="text" name="Ctitle[0]" placeholder="Course Title">
+                        <input type="text" name="Semester[0]" placeholder="Semester">
+                        <input type="text" name="ExamID[0]" placeholder="Exam ID">
+                        <input type="text" name="studentName[0]" placeholder="Student Name">
+                        <input type="text" name="studentIDvalue[0]" placeholder="Student ID">
+                        <input type="text" name="Marks[0]" placeholder="Marks">
+                    </td>
+                    <td><input type="number" name="co1[0]"></td>
+                    <td><input type="number" name="co2[0]"></td>
+                    <td><input type="number" name="co3[0]"></td>
+                    <td><input type="number" name="co4[0]"></td>
+                    <td><input type="number" name="co5[0]"></td>
+                    <td><input type="number" name="co6[0]"></td>
+                    <td><input type="number" name="co7[0]"></td>
+                </tr>
+                <!-- Repeat for Students 2 to 30 -->
+                <!-- Student 2 -->
+                <tr>
+                    <td>
+                        <input type="text" name="Ccode[1]" placeholder="Course Code">
+                        <input type="text" name="Ctitle[1]" placeholder="Course Title">
+                        <input type="text" name="Semester[1]" placeholder="Semester">
+                        <input type="text" name="ExamID[1]" placeholder="Exam ID">
+                        <input type="text" name="studentName[1]" placeholder="Student Name">
+                        <input type="text" name="studentIDvalue[1]" placeholder="Student ID">
+                        <input type="text" name="Marks[1]" placeholder="Marks">
+                    </td>
+                    <td><input type="number" name="co1[1]"></td>
+                    <td><input type="number" name="co2[1]"></td>
+                    <td><input type="number" name="co3[1]"></td>
+                    <td><input type="number" name="co4[1]"></td>
+                    <td><input type="number" name="co5[1]"></td>
+                    <td><input type="number" name="co6[1]"></td>
+                    <td><input type="number" name="co7[1]"></td>
+                </tr>
+                <!-- Repeat for Students 3 to 30 -->
+                <!-- Continue this pattern for each student -->
+            </tbody>
+        </table>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
 
-        // Send the data to the backend
-        fetch('/api/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle success response
-            console.log(data); // You can perform further actions here
-        })
-        .catch(error => {
-            // Handle error
-            console.error(error);
-        });
-    }
-</script> --> 

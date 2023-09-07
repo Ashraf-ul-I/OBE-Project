@@ -1,0 +1,42 @@
+<%- include('include/_header')%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+    <style>
+        .po-column {
+            display: inline-block;
+            width: 100px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Data</h1>
+    <table>
+        <% poValues.forEach(function(student, index) { %>
+         
+                <h2>Student ID: <%= student.studentIDvalue %></h2>
+                <h3>PO Values:</h3>
+                <div class="po-columns">
+                    <tr>
+                        <% for (let i = 1; i < student.po.length; i++) { %>
+                            <% if (i<=7) { %>
+                                <th>PO<%= i%>:</th>
+                            <% } %>
+                            </tr>
+                            <tr>       
+                                        <td><%= student.po[i] %></td>
+                                                <% } %>
+                            </tr>
+                    
+                   
+                </div>
+            
+        <% }); %>
+    </table>
+</body>
+</html>
+<%- include('include/_footer')%>

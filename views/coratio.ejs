@@ -1,0 +1,39 @@
+<%- include('include/_header')%>
+
+<body>
+    <h1>CO Ratios</h1>
+    <table>
+        <tr>
+            <th>Student ID</th>
+            <th>CO1</th>
+            <th>CO2</th>
+            <th>CO3</th>
+            <th>CO4</th>
+            <th>CO5</th>
+            <th>CO6</th>
+            <th>CO7</th>
+        </tr>
+       
+        <% coRatios.forEach(coRatio => { %> 
+            <% coRatio.studentIDvalue.forEach((name, index) => { %>
+        <tr>
+            <td><%= name %></td>
+            <td><%= coRatio.ratios && coRatio.ratios.co1 && coRatio.ratios.co1[index] !== null ? coRatio.ratios.co1[index] : 'N/A' %></td>
+            <td><%= coRatio.ratios && coRatio.ratios.co2 && coRatio.ratios.co2[index] !== null ? coRatio.ratios.co2[index] : 'N/A' %></td>
+            <td><%= coRatio.ratios && coRatio.ratios.co3 && coRatio.ratios.co3[index] !== null ? coRatio.ratios.co3[index] : 'N/A' %></td>
+            <td><%= coRatio.ratios && coRatio.ratios.co4 && coRatio.ratios.co4[index] !== null ? coRatio.ratios.co4[index] : 'N/A' %></td>
+            <td><%= coRatio.ratios && coRatio.ratios.co5 && coRatio.ratios.co5[index] !== null ? coRatio.ratios.co5[index] : 'N/A' %></td>
+            <td><%= coRatio.ratios && coRatio.ratios.co6 && coRatio.ratios.co6[index] !== null ? coRatio.ratios.co6[index] : 'N/A' %></td>
+            <td><%= coRatio.ratios && coRatio.ratios.co7 && coRatio.ratios.co7[index] !== null ? coRatio.ratios.co7[index] : 'N/A' %></td>
+        </tr>
+        <% }); %>
+        <% }); %>
+    </table>
+</body>
+</html>
+<%- include('include/_footer')%>
+
+
+<!-- <pre><%= JSON.stringify(coRatios, null, 2) %></pre> -->
+
+
