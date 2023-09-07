@@ -1,13 +1,10 @@
-/* Your existing CSS styles */
-
-/* Add styles for the navigation layout */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--border-btn); /* Using the specified color */
+    background-color: var(--border-btn); 
     padding: 10px 0;
-    /* background-color: #06d6a0; */
+
 }
 
 .navleft {
@@ -32,7 +29,7 @@
 .navigation-item {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
-    color: var(--light); /* Using the specified light color */
+    color: var(--light); 
     padding: 10px;
 }
 
@@ -40,7 +37,7 @@
     background-color: transparent;
 }
 
-/* Additional styles for better appearance */
+
 .container {
     padding: 20px;
 }
@@ -48,8 +45,7 @@
     margin-top: 50px;
     max-width: 80%x;
     height: 500px;
-    /* background-image: url(/assets/img/img1.jpg);
-    background-size: cover; */
+
 }
 .About img{
     height: 100%;
