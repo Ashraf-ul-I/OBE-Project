@@ -1,10 +1,11 @@
 const express=require('express');
 const http=require('http');
+
 const dotenv=require('dotenv');
 const morgan=require('morgan');
 const bodyparser=require('body-parser');
 const path=require('path');
-
+const controller=require('./server/controller/controller')
 const app=express();
 
 const connectDB=require('./server/database/connection')
@@ -16,6 +17,10 @@ app.use(express.json());
 
 connectDB();
 app.use(bodyparser.urlencoded({ extended: true }));
+
+controller.setupSession(app);
+
+
 
 app.set("view engine", "ejs");
 
