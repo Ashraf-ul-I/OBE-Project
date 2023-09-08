@@ -81,28 +81,23 @@
     <title>Data Display</title>
 </head>
 <body>
-    <div class="data-box">
+    <!-- <div class="data-box">
         <h2>Exam ID: <%= userBB.ExamID %></h2>
         <h2>Selected Faculty Data</h2>
         <table>
             <tr>
                 <th>Faculty Name</th>
                 <th>Faculty ID</th>
-                <th>Course Code</th>
-                <th>Course Title</th>
-                <th>Semester</th>
             </tr>
-            <% userBB.forEach(Faculty => { %>
+            <% facultyId.forEach(Faculty => { %>
             <tr>
                 <td><%= Faculty.Fname %></td>
                 <td><%= Faculty.Fid %></td>
-                <td><%= Faculty.Ccode %></td>
-                <td><%= Faculty.Ctitle %></td>
-                <td><%= Faculty.Semester %></td>
+                
             </tr>
             <% }); %>
         </table>
-    </div>
+    </div> -->
 
     <div class="data-box">
         <h2>Student Data</h2>
@@ -111,6 +106,9 @@
                 <th>Student Name</th>
                 <th>Student ID</th>
                 <th>Marks</th>
+                <th>Course COde</th>
+                <th>Curse title</th>
+                <th>Semester</th>
                 <th>CO 1</th>
                 <th>CO 2</th>
                 <th>CO 3</th>
@@ -125,6 +123,9 @@
                         <td><%= name %></td>
                         <td><%= student.studentIDvalue[index] %></td>
                         <td><%= student.Marks[index] %></td>
+                        <td><%= student.Ccode[index] %></td>
+                        <td><%= student.Ctitle[index] %></td>
+                        <td><%= student.Semester[index] %></td>
                         <td><%= student.co1[index] %></td>
                         <td><%= student.co2[index] %></td>
                         <td><%= student.co3[index] %></td>

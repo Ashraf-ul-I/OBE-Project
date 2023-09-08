@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Display</title>
+</head>
+<body>
+    <div class="data-box">
+        <h2>Student Data</h2>
+        <table>
+            <tr>
+               
+                <th>Student ID</th>
+                <th>pO 1</th>
+                <th>pO 2</th>
+                <th>pO 3</th>
+                <th>pO 4</th>
+                <th>pO 5</th>
+                <th>pO 6</th>
+                <th>pO 7</th>
+            </tr>
+            <% poValues.forEach(student => { %>
+                <% student.studentIDvalue.forEach((name, index) => { %>
+                    <tr>
+                        
+                        <td><%= student.studentIDvalue[index] %></td>
+                        <td><%= student.po1[index] %></td>
+                        <td><%= student.po2[index] %></td>
+                        <td><%= student.po3[index] %></td>
+                        <td><%= student.po4[index] %></td>
+                        <td><%= student.po5[index] %></td>
+                        <td><%= student.po6[index] %></td>
+                        <td><%= student.po7[index] %></td>
+                    </tr>
+                <% }); %>
+            <% }); %>
+        </table>
+    </div>
+</body>
+</html>

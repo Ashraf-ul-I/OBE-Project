@@ -1,85 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Student Data Form</title>
-</head>
-<body>
-    <h1>Student Data Form</h1>
-    <form action="/api/users/create" id="studentForm" method="POST">
-        <label for="tableCount">Number of Tables:</label>
-        <input type="number" id="tableCount" name="tableCount" min="1" value="1">
-        <button type="button" id="generateTables">Generate Tables</button>
-        <hr>
-        <div id="tableContainer"></div>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-
-    <script>
-        const studentForm = document.getElementById("studentForm");
-        const generateTablesBtn = document.getElementById("generateTables");
-        const tableContainer = document.getElementById("tableContainer");
-
-        generateTablesBtn.addEventListener("click", function () {
-            const tableCount = parseInt(document.getElementById("tableCount").value, 10);
-
-            // Clear existing tables
-            tableContainer.innerHTML = "";
-
-            for (let i = 0; i < tableCount; i++) {
-                const table = document.createElement("table");
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th>Student Details</th>
-                            <th>CO1</th>
-                            <th>CO2</th>
-                            <th>CO3</th>
-                            <th>CO4</th>
-                            <th>CO5</th>
-                            <th>CO6</th>
-                            <th>CO7</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input type="text" name="Ccode[${i}]" placeholder="Course Code">
-                                <input type="text" name="Ctitle[${i}]" placeholder="Course Title">
-                                <input type="text" name="Semester[${i}]" placeholder="Semester">
-                                <input type="text" name="ExamID[${i}]" placeholder="Exam ID">
-                                <input type="text" name="studentName[${i}]" placeholder="Student Name">
-                                <input type="text" name="studentIDvalue[${i}]" placeholder="Student ID">
-                                <input type="text" name="Marks[${i}]" placeholder="Marks">
-                            </td>
-                            <td><input type="number" name="co1[${i}]"></td>
-                            <td><input type="number" name="co2[${i}]"></td>
-                            <td><input type="number" name="co3[${i}]"></td>
-                            <td><input type="number" name="co4[${i}]"></td>
-                            <td><input type="number" name="co5[${i}]"></td>
-                            <td><input type="number" name="co6[${i}]"></td>
-                            <td><input type="number" name="co7[${i}]"></td>
-                        </tr>
-                    </tbody>
-                `;
-                tableContainer.appendChild(table);
-            }
-        });
-
-        studentForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const formData = new FormData(this);
-
-            // Now you can send the 'formData' to your server to save it to the database
-            // You can use AJAX or fetch to send a POST request to your server endpoint.
-
-            console.log(formData); // For demonstration purposes, print the data to the console.
-        });
-    </script>
-</body>
-</html> -->
-
 
 <!DOCTYPE html>
 <html>
@@ -130,8 +48,7 @@
                     <td><input type="number" name="co6[0]"></td>
                     <td><input type="number" name="co7[0]"></td>
                 </tr>
-                <!-- Repeat for Students 2 to 30 -->
-                <!-- Student 2 -->
+<!-- student 2 -->
                 <tr>
                     <td>
                         <input type="text" name="Ccode[1]" placeholder="Course Code">
@@ -150,8 +67,63 @@
                     <td><input type="number" name="co6[1]"></td>
                     <td><input type="number" name="co7[1]"></td>
                 </tr>
-                <!-- Repeat for Students 3 to 30 -->
-                <!-- Continue this pattern for each student -->
+                <!-- student-3 -->
+                <tr>
+                    <td>
+                        <input type="text" name="Ccode[2]" placeholder="Course Code">
+                        <input type="text" name="Ctitle[2]" placeholder="Course Title">
+                        <input type="text" name="Semester[2]" placeholder="Semester">
+                        <input type="text" name="ExamID[2]" placeholder="Exam ID">
+                        <input type="text" name="studentName[2]" placeholder="Student Name">
+                        <input type="text" name="studentIDvalue[2]" placeholder="Student ID">
+                        <input type="text" name="Marks[2]" placeholder="Marks">
+                    </td>
+                    <td><input type="number" name="co1[2]"></td>
+                    <td><input type="number" name="co2[2]"></td>
+                    <td><input type="number" name="co3[2]"></td>
+                    <td><input type="number" name="co4[2]"></td>
+                    <td><input type="number" name="co5[2]"></td>
+                    <td><input type="number" name="co6[2]"></td>
+                    <td><input type="number" name="co7[2]"></td>
+                </tr>
+                <!-- student-4 -->
+                <tr>
+                    <td>
+                        <input type="text" name="Ccode[3]" placeholder="Course Code">
+                        <input type="text" name="Ctitle[3]" placeholder="Course Title">
+                        <input type="text" name="Semester[3]" placeholder="Semester">
+                        <input type="text" name="ExamID[3]" placeholder="Exam ID">
+                        <input type="text" name="studentName[3]" placeholder="Student Name">
+                        <input type="text" name="studentIDvalue[3]" placeholder="Student ID">
+                        <input type="text" name="Marks[3]" placeholder="Marks">
+                    </td>
+                    <td><input type="number" name="co1[3]"></td>
+                    <td><input type="number" name="co2[3]"></td>
+                    <td><input type="number" name="co3[3]"></td>
+                    <td><input type="number" name="co4[3]"></td>
+                    <td><input type="number" name="co5[3]"></td>
+                    <td><input type="number" name="co6[3]"></td>
+                    <td><input type="number" name="co7[3]"></td>
+                </tr>
+                <!-- for student 5 -->
+                <tr>
+                    <td>
+                        <input type="text" name="Ccode[4]" placeholder="Course Code">
+                        <input type="text" name="Ctitle[4]" placeholder="Course Title">
+                        <input type="text" name="Semester[4]" placeholder="Semester">
+                        <input type="text" name="ExamID[4]" placeholder="Exam ID">
+                        <input type="text" name="studentName[4]" placeholder="Student Name">
+                        <input type="text" name="studentIDvalue[4]" placeholder="Student ID">
+                        <input type="text" name="Marks[4]" placeholder="Marks">
+                    </td>
+                    <td><input type="number" name="co1[4]"></td>
+                    <td><input type="number" name="co2[4]"></td>
+                    <td><input type="number" name="co3[4]"></td>
+                    <td><input type="number" name="co4[4]"></td>
+                    <td><input type="number" name="co5[4]"></td>
+                    <td><input type="number" name="co6[4]"></td>
+                    <td><input type="number" name="co7[4]"></td>
+                </tr>
             </tbody>
         </table>
         <br>
