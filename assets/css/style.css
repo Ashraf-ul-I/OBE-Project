@@ -1,9 +1,20 @@
+
+body{
+  
+    height: 1080px;
+}
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--border-btn); 
     padding: 10px 0;
+    
+
+}
+
+.navbar:hover{
+    background-color: aqua;
 
 }
 
@@ -31,6 +42,10 @@
     font-family: 'Poppins', sans-serif;
     color: var(--light); 
     padding: 10px;
+
+}
+.navigation-item:hover{
+    background-color: white;
 }
 
 .navright {
@@ -52,3 +67,8 @@
     width: 100%;
 }
 
+.submitDefine{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+}

@@ -1,0 +1,50 @@
+/* Footer styles */
+footer {
+    background-color: #333; /* Background color for the footer */
+    color: #fff; /* Text color for the footer */
+    padding: 10px 0; /* Padding at the top and bottom of the footer */
+    text-align: center; /* Center-align the text */
+    margin-top: 1000px;
+    width: 100%;
+    
+  }
+  
+  .footer-Container {
+    display: flex;
+    justify-content: space-between; /* Space out the content evenly */
+    align-items: center; /* Center-align content vertically */
+    max-width: 1200px; /* Set a maximum width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+    height: 50px;
+  }
+  
+  .footer-Container p {
+    margin: 0; /* Remove default margin for paragraphs */
+  }
+  
+  ul {
+    list-style: none; 
+    padding: 0; 
+  }
+  
+  ul li {
+    display: inline; /* Display list items inline */
+    margin-right: 20px; /* Add spacing between list items */
+  }
+  
+  ul li:last-child {
+    margin-right: 0; /* Remove right margin for the last list item */
+  }
+  
+  /* Style links in the footer */
+  ul li a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Text color for links */
+    font-weight: bold; /* Make links bold */
+  }
+  
+  /* Hover effect for links */
+  ul li a:hover {
+    text-decoration: underline; /* Add underline on hover */
+  }
+  

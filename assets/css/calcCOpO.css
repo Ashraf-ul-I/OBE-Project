@@ -1,0 +1,53 @@
+/* Styles for the main container */
+.pocoCalc {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto; /* Center the container horizontally */
+    background-color: rgba(235, 229, 229, 0.805);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+/* Styles for btn1 */
+.btn1 {
+    width: 100%;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+/* Hover effect for btn1 */
+.btn1:hover {
+    background-color: black;
+}
+
+/* Styles for btn2 */
+.btn2 {
+    width: 130%;
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Hover effect for btn2 */
+.btn2:hover {
+    background-color: black;
+}
