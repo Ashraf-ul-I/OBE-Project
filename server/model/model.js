@@ -15,7 +15,7 @@ const studentSchema = new mongoose.Schema({
     co4: [Number],
     co5: [Number],
     co6: [Number],
-    co7: [Number],
+    co7: [Number] ,
     userId:  {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'registerData',

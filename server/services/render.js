@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+
 exports.homeRoutes = (req, res) => {
 
         res.render('index');
@@ -11,7 +12,8 @@ exports.dataShow=(req,res)=>{
    axios.get("http://localhost:3000/api/users/find")
       .then(function(response){
         res.render('dataShow',{
-            userBB:response.data
+            userBB:response.data,
+            facultyId:response.data
         });
       })
       .catch(err=>{
@@ -20,6 +22,12 @@ exports.dataShow=(req,res)=>{
 
     
 }
+
+exports.profileshow = (req, res) => {
+     res.render('profile');   
+}
+
+
 
 exports.Search=(req,res)=>{
 

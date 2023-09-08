@@ -13,16 +13,19 @@ router.get('/search',isAuthenticated,services.Search);
 router.get('/define-co',isAuthenticated,services.defineCo);
 router.get('/coRatios', isAuthenticated,services.coRatios);
 router.get('/findPO',isAuthenticated,services.poValues);
+router.get('/facultyProfile',isAuthenticated,services.profileshow);
 //Middleware
 
 
 //////Login REgister 
 router.get('/',services.login);
 router.get('/register',services.register);
+
 //login register API with session and cookies
 router.post('/api/users/signup',controller.signup);
 router.post('/api/users/login',controller.login);
 router.get('/api/users/logout',controller.logout);
+// router.get('api/users/facultyprofile',controller.profileFaculty);
 
 //API
  router.post('/api/users/create',controller.createStudent);
@@ -38,7 +41,7 @@ router.get('/api/users/findPO', controller.findPovalues);
 
 router.get('/api/users/search', controller.searchShow);
 
-router.put('/api/users/:id',controller.update);
+router.put('/api/users/:id',controller.updateStudent);
 
 router.delete('/api/users/:id',controller.delete);
 

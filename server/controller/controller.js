@@ -13,6 +13,111 @@ const POModel=require('../model/podata')
  * @param {Most important Api for create user} req 
  * @param {*} res 
  */
+// exports.createStudent = async (req, res) => {
+//     try {
+//         const {
+//             Ccode,
+//             Ctitle,
+//             Semester,
+//             ExamID,
+//             studentName,
+//             studentIDvalue,
+//             Marks,
+//             co1,
+//             co2,
+//             co3,
+//             co4,
+//             co5,
+//             co6,
+//             co7,
+//             Fid
+//         } = req.body;
+
+//         // Create a new student instance
+//         const student = new UserDB({
+//             Ccode,
+//             Ctitle,
+//             Semester,
+//             ExamID,
+//             studentName,
+//             studentIDvalue,
+//             Marks,
+//             co1,
+//             co2,
+//             co3,
+//             co4,
+//             co5,
+//             co6,
+//             co7,
+//             Fid,
+//         });
+
+     
+//         await student.save();  
+//         res.redirect('/marks-entry');
+        
+//     } catch (err) {
+//         console.error(err);
+//         res.redirect('/marks-entry?alert=error&message=Error occurred while creating student');
+//     }
+// };
+
+
+// exports.createStudent = async (req, res) => {
+//     try {
+//         const {
+//             Ccode,
+//             Ctitle,
+//             Semester,
+//             ExamID,
+//             studentName,
+//             studentIDvalue,
+//             Marks,
+//             co1,
+//             co2,
+//             co3,
+//             co4,
+//             co5,
+//             co6,
+//             co7,
+//             Fid
+//         } = req.body;
+
+//         // Find the faculty by their Fid
+//         const faculty = await Faculty.findOne({ Fid });
+
+//         if (!faculty) {
+//             return res.status(404).json({ message: 'Faculty not found' });
+//         }
+
+//         // Create a new student instance and associate it with the faculty
+//         const student = new Student({
+//             Ccode,
+//             Ctitle,
+//             Semester,
+//             ExamID,
+//             studentName,
+//             studentIDvalue,
+//             Marks,
+//             co1,
+//             co2,
+//             co3,
+//             co4,
+//             co5,
+//             co6,
+//             co7,
+//             userId: faculty._id, // Associate the student with the faculty using their userId
+//         });
+
+//         await student.save();
+//         res.redirect('/marks-entry');
+        
+//     } catch (err) {
+//         console.error(err);
+//         res.redirect('/marks-entry?alert=error&message=Error occurred while creating student');
+//     }
+// };
+
 exports.createStudent = async (req, res) => {
     try {
         const {
@@ -33,7 +138,11 @@ exports.createStudent = async (req, res) => {
             Fid
         } = req.body;
 
-        // Create a new student instance
+        const faculty = await loginregDB.findOne({ Fid });
+
+        if (!faculty) {
+            return res.redirect('/marks-entry?alert=error&message=Faculty not found');
+        }
         const student = new UserDB({
             Ccode,
             Ctitle,
@@ -49,11 +158,10 @@ exports.createStudent = async (req, res) => {
             co5,
             co6,
             co7,
-            Fid,
+            userId: faculty._id, 
         });
 
-     
-        await student.save();  
+        await student.save();
         res.redirect('/marks-entry');
         
     } catch (err) {
@@ -61,6 +169,9 @@ exports.createStudent = async (req, res) => {
         res.redirect('/marks-entry?alert=error&message=Error occurred while creating student');
     }
 };
+
+
+
 
 /**
  * 
@@ -107,7 +218,7 @@ exports.codefine=  (req,res)=>{
 
 exports.find = (req, res) => {
     const { Fid } = req.query;
-
+    const facultyId=loginregDB.findById(Fid);
     if (Fid) {
         UserDB.findById(Fid)
             .then(data => {
@@ -131,6 +242,17 @@ exports.find = (req, res) => {
     }
 };
 
+exports.profileFaculty= (req, res) => {
+   
+    loginregDB.find()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({ message: err.message || "Error occurred while retrieving student information" });
+        });
+  }
+
 
 
 
@@ -139,49 +261,75 @@ exports.find = (req, res) => {
 
 // ////////////////////////
 
-// exports.find1=(re1,res)=>{
-//     if(req.query.ExamID){
-//         const id=req.query.ExamID;
-//         UserDB.findById(id)
-//         .then(data=>{
-//           if(!data){
-//             res.status(500).send({message: "Not found User id"+id})
-//           }else{
-//             res.render('dataShow',{
-//               userBB:data,
-//               ExamID:id
-//             });
-//           }
+// exports.find = (req, res) => {
+//     const faculty =  loginregDB.findOne({ Fid });// Assuming you have implemented authentication middleware
+//     console.log(faculty);
+//     if (!faculty) {
+//         return res.status(401).send({ message: "Unauthorized access" });
+//     }
+    
+//     // Find students associated with the logged-in faculty (using userId)
+//     UserDB.find({ userId: faculty._id })
+//         .then(students => {
+//             res.send(students);
 //         })
-//         .catch(err=>{
-//             res.status(500).send({message:err.message || "Error Occured while retriving user with id"+id})
-//           })
-//       }
+//         .catch(err => {
+//             res.status(500).send({ message: err.message || "Error occurred while retrieving student information" });
+//         });
 // };
+
 
 
 
 
 //Update a new identified user by user id
 
-exports.update=(req,res)=>{
-    if(!req.body){
-        return res.status(400)
-                   .send({message:"Data to update can not be empty"})
-    }
-    const id= req.params.id; // there are 2 type parameters but in route we use url type so this params is URL params
-    UserDB.findByIdAndUpdate(id,req.body,{useFindAndModify:false}).then(data=>{
-        if(!data){
-            res.status(400).send({message:`Can not Update user with ${id}.Maybe user not FOund`});
-        }else{
-            res.send(data);
-        }
-    })
-    .catch(err=>{
-        res.status(500).send({message:"Ërror update information"});
-    })
+// exports.update=(req,res)=>{
+//     if(!req.body){
+//         return res.status(400)
+//                    .send({message:"Data to update can not be empty"})
+//     }
+//     const id= req.params.id; // there are 2 type parameters but in route we use url type so this params is URL params
+//     UserDB.findByIdAndUpdate(id,req.body,{useFindAndModify:false}).then(data=>{
+//         if(!data){
+//             res.status(400).send({message:`Can not Update user with ${id}.Maybe user not FOund`});
+//         }else{
+//             res.send(data);
+//         }
+//     })
+//     .catch(err=>{
+//         res.status(500).send({message:"Ërror update information"});
+//     })
 
-}
+// }
+
+
+
+exports.updateStudent = async (req, res) => {
+    try {
+        const { studentId } = req.params; // Get the studentId from the URL parameter
+        const updatedData = req.body; // Updated student data
+
+        // Find the student by their ID
+        const student = await UserDB.findById(studentId);
+
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
+       
+        Object.assign(student, updatedData);
+
+        // Save the updated student data
+        await student.save();
+
+        res.status(200).json({ message: 'Student data updated successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error occurred while updating student data' });
+    }
+};
+
 
 //delete a user with specified user id in the request
 
@@ -237,8 +385,12 @@ exports.logout = (req, res) => {
         res.redirect('/');
     });
 };
+
 exports.signup = async (req, res) => {
     const { Fid, Fname, password, confirmpassword } = req.body;
+
+    // Define a regular expression for password validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
     try {
         const existingUser = await loginregDB.findOne({
@@ -247,6 +399,10 @@ exports.signup = async (req, res) => {
 
         if (existingUser) {
             res.send('<script>alert("User already exists"); window.location.href = "/login";</script>');
+        } else if (!password.match(passwordRegex)) {
+            res.send('<script>alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character."); window.location.href = "/register";</script>');
+        } else if (password !== confirmpassword) {
+            res.send('<script>alert("Password and confirm password do not match."); window.location.href = "/register";</script>');
         } else {
             const user = await loginregDB.create({
                 Fid: Fid,
@@ -264,7 +420,7 @@ exports.signup = async (req, res) => {
         }
     } catch (err) {
         res.status(500).send(
-            `<script>alert("Something Wrong Please Carefully Fillup The Field"); window.location.href = "/register";</script>`
+            `<script>alert("Something went wrong. Please carefully fill out the fields."); window.location.href = "/register";</script>`
         );
     }
 };
@@ -325,7 +481,12 @@ exports.coRatio = async (req, res) => {
         await CoRatiosModel.create(coRatioData);
       }
   
-      res.send('CO ratios calculated and saved successfully for each student');
+      const successMessage = `
+                <div style="border: 1px solid #ccc; padding: 10px;">
+                    Co ratio Calculated Succesfully. <a href="/facultyProfile">OK</a>
+                </div>
+            `;
+            res.status(201).send(successMessage);
     } catch (error) {
       console.error(error);
       res.status(500).send('Error calculating and saving CO ratios');
@@ -367,93 +528,93 @@ exports.findRatios = (req, res) => {
  * @abstract {* This api is calculate the value of the PO ratio } req 
  * @param {*} res 
  */
-
 exports.calculatePO = async (req, res) => {
     try {
-    const coToPoMatrix = [
-    [1, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1],
-    ];
-    
+      const coToPoMatrix = [
+        [1, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 1, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 1],
+      ];
+  
       const students = await CoRatiosModel.find().lean();
-      console.log(students);
-    
       const poValues = [];
-    
+  
       for (const student of students) {
-        console.log(student);
         const poValue = {
           studentIDvalue: student.studentIDvalue,
-          po: [], 
+          po1: [],
+          po2: [],
+          po3: [],
+          po4: [],
+          po5: [],
+          po6: [],
+          po7: [],
         };
-        console.log(poValue.studentIDvalue);
+
         const coData = {};
-    
+  
         for (let i = 1; i <= 7; i++) {
           const coKey = `co${i}`;
-          console.log("****************student.ratios has been printed **************");
-          console.log(student.ratios);
-          console.log("#################student.ratios[cokey]");
-          console.log(student.ratios[coKey]);
-    
+  
           if (student.ratios && student.ratios[coKey] && student.ratios[coKey].length > 0) {
             coData[coKey] = student.ratios[coKey];
           }
         }
-
-        const numRows = coData.co1.length; 
-        const coRows = [];
-    
+        const numRows = coData.co1.length;
+  
         for (let i = 0; i < numRows; i++) {
           const coRow = [];
-          for (const coKey in coData) {
+  
+          for (let j = 1; j <= 7; j++) {
+            const coKey = `co${j}`;
             coRow.push(coData[coKey][i]);
           }
-          coRows.push(coRow);
+         console.log(coRow);
+         const poRow = coRow.map((coValue, j) => {
+            let poValueForCO = 0;
+        
+            for (let k = 0; k < 7; k++) {
+                poValueForCO += coValue * coToPoMatrix[k][j];
+            }
+            if (isNaN(poValueForCO)) {
+                poValueForCO = 0;
+            }
+        
+            return poValueForCO;
+        });
+  
+          poValue.po1.push(poRow[0]);
+          poValue.po2.push(poRow[1]);
+          poValue.po3.push(poRow[2]);
+          poValue.po4.push(poRow[3]);
+          poValue.po5.push(poRow[4]);
+          poValue.po6.push(poRow[5]);
+          poValue.po7.push(poRow[6]);
         }
-    
-        // console.log("coRows:");
-        // console.log(coRows);
-        // console.log("coToPoMatrix:");
-        // console.log(coToPoMatrix);
-        const coMatrix = [].concat(...coRows);
-    
- const po = coMatrix.map((row) => {
-    if (Array.isArray(row)) {
-      return row.map((value, j) => {
-        return [value * coToPoMatrix[j]];
-      });
-    } else {
-      
-      return row; 
-    }
-  });
   
-  poValue.po = po;
-  poValues.push(poValue);
-
- for (const poValue of poValues) {
-    console.log("Student ID:", poValue.studentIDvalue);
-    console.log("PO values:");
-    for (const poArray of poValue.po) {
-      console.log(poArray);
-    }
-    console.log("--------------");
-  }
- await POModel.create(poValues);
-  
-      }}catch (error) {
-        console.error(error);
-        res.status(500).send('Error calculating and saving PO values');
+        poValues.push(poValue);
       }
+  
+      await POModel.create(poValues);
+  
+      const successMessage = `
+                <div style="border: 1px solid #ccc; padding: 10px;">
+                    PO ratio Calculated Succesfully. <a href="/facultyProfile">OK</a>
+                </div>
+            `;
+            res.status(201).send(successMessage);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error calculating and saving PO values');
     }
- 
+  };
 
+  
+  
 /**
  * 
  * @param {It will retrieve the data of the PO ratios and then show the value to the user} req 
